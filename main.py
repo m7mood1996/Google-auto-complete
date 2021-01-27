@@ -6,7 +6,7 @@ from view import print_results
 from search_model import search
 
 if __name__ == '__main__':
-    files_path = utils.get_files_path('/Users/mahmoodnael/Desktop/ExcellenTeamCourse/Aechive/')
+    files_path = utils.get_files_path('/Users/mahmoodnael/Desktop/ExcellenTeamCourse/Google2/data')
     start = time.time()
     a = Auto_complation_trie(files_path)
     a.fill_model()

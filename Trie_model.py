@@ -21,27 +21,36 @@ class Auto_complation_trie:
         self.hash_map = {}
         for char in "abcdefghijklmnopqrstuvwxyz":
             self.hash_map[char] = self.getNode()
+            self.hash_map[char].ch = char
         self.files_path = files_path
 
     def getNode(self):
         return Trie_node()
         
+    def search(self, key : str): 
+        """
+        DFS search for a phrase in the trie tree
+        """
+        if len(key) == 0:
+            return None
+
+        node = self.hash_map[key[0]] 
+        length = len(key)
+        for level in range(1, length):
+            child = node.get_next_node(key[level])
+            if child == None:
+                return node, level
+            node = child
+        return node, level
+
     def insert(self, prefix):
-        if self.hash_map.get(prefix[0]):
-            pCrawl = self.hash_map.get(prefix[0])
-            length = len(prefix) 
-            for level in range(length): 
-                found_flag = False
-                for node in pCrawl.childrens:
-                    if prefix[level] == node.ch:
-                        pCrawl = node
-                        found_flag = True
-                        break
-                if not found_flag:
-                    node = self.getNode()
-                    node.ch = prefix[level]
-                    pCrawl.childrens.append(node)
-                    pCrawl = node
+        pCrawl, index = self.search(prefix)
+        for i in range(index, len(prefix)):
+            node = self.getNode()
+            node.ch = prefix[i]
+            pCrawl.childrens.append(node)
+            pCrawl = node
+        
             
         # newList = Auto_complation_trie.get_updated_list(pCrawl.apperance, (file_id, line, orignal_sentince, score) )
         # pCrawl.apperance = newList
@@ -90,16 +99,7 @@ class Auto_complation_trie:
         return not count == len(line) - 1
 
   
-    def search(self, key : str): 
-        
-        node = self.root 
-        length = len(key)
-        for level in range(length):
-
-            node = node.get_next_node(key[level]) 
-            if not node: 
-                return None
-        return node.apperance
+    
 
     def auto_complation(self, key : str):
         node = self.hash_map.get(key[0])
