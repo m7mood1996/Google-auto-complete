@@ -36,7 +36,7 @@ From a data-set (text files), generating a trie tree of all the prefixes in thes
 
 ### Installation
 
-- Copy this link ***https://github.com/bashbash96/PartnerFinder.git*** then on cmd or bash do:
+- Copy this link ***https://github.com/m7mood1996/Auto-completion-project-python.git*** then on cmd or bash do:
 
 		cd ~/Desktop
 		git clone {{the link you just copied}} Project
@@ -95,7 +95,7 @@ To run locally, in the project dirictory do the following in the terminal/cmd:
 python manage.py runserver
 ```
 
-[Back To The Top](#partner-finder-search-engine)
+[Back To The Top](#Auto-completion-project-python)
 
 ---
 ## References
